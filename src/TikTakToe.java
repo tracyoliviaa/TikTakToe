@@ -8,15 +8,15 @@ public class TikTakToe {
                 {' ', ' ', ' '}
         };
 
-        int currentPlayer = 1; // Spieler 1 beginnt
-        boolean gameFinished = false;
+        int auktuellerSpieler = 1; // Spieler 1 beginnt
+        boolean Spielbeendet = false;
 
         Scanner scanner = new Scanner(System.in);
 
         printBoard(board);
 
-        while (!gameFinished) {
-            System.out.println("Spieler " + currentPlayer + ", geben Sie Ihre Koordinaten ein (z.B. 1,3): ");
+        while (!Spielbeendet) {
+            System.out.println("Spieler " + auktuellerSpieler + ", geben Sie Ihre Koordinaten ein (z.B. 1,3): ");
             String input = scanner.nextLine();
 
             if (isValidInput(input) && isValidMove(board, input)) {
@@ -24,25 +24,25 @@ public class TikTakToe {
                 int row = Integer.parseInt(coordinates[0]) - 1;
                 int col = Integer.parseInt(coordinates[1]) - 1;
 
-                if (currentPlayer == 1) {
+                if (auktuellerSpieler == 1) {
                     board[row][col] = 'x';
-                    currentPlayer = 2;
+                    auktuellerSpieler = 2;
                 } else {
                     board[row][col] = 'o';
-                    currentPlayer = 1;
+                    auktuellerSpieler = 1;
                 }
 
                 printBoard(board);
 
                 if (checkWin(board, 'x')) {
                     System.out.println("Spieler 1 (x) gewinnt!");
-                    gameFinished = true;
+                    Spielbeendet = true;
                 } else if (checkWin(board, 'o')) {
                     System.out.println("Spieler 2 (o) gewinnt!");
-                    gameFinished = true;
+                    Spielbeendet = true;
                 } else if (isBoardFull(board)) {
                     System.out.println("Unentschieden! Das Spielfeld ist voll.");
-                    gameFinished = true;
+                    Spielbeendet = true;
                 }
             } else {
                 System.out.println("Ungültige Eingabe. Bitte geben Sie Ihre Koordinaten erneut ein.");
